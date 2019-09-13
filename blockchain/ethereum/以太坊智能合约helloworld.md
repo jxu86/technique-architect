@@ -245,6 +245,7 @@ Summary
 
 ### 10、运行合约
 ```
+truffle console       # 进入命令行模式
 truffle(development)> helloworld=await HelloWorld.deployed()
 undefined
 truffle(development)> helloworld.greet.call()
@@ -278,11 +279,8 @@ truffle(development)> helloworld.greet.call()
 
 [以太坊智能合约Hello World示例程序](https://blog.csdn.net/CSDN_AF/article/details/77963841)
 
-[truffle （ETH以太坊智能合约集成开发工具） 入门教程](https://www.jianshu.com/p/40b7d25814e3)
-
 [用Solidity在Truffle上构建一个HelloWorld智能合约](https://www.cnblogs.com/bugmaking/p/9211225.html)
 
-[[文档翻译系列]Truffle框架](http://truffle.tryblockchain.org/)
-
 [solidity中文文档](https://solidity-cn.readthedocs.io/zh/develop/introduction-to-smart-contracts.html)
+
 [solidity英文版](https://solidity.readthedocs.io/en/v0.5.11/)
