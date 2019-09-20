@@ -125,7 +125,7 @@ contract HelloWorld{
 
 #### 五、怎么使用ABI
 使用ABI的细节请参考:
-[以太坊智能合约---helloworld](https://github.com/jxu86/technique-architect/blockchain/ethereum/以太坊智能合约---helloworld.md)
+[以太坊智能合约---helloworld](https://github.com/jxu86/technique-architect/blob/master/blockchain/ethereum/以太坊智能合约---helloworld.md)
 
 
 
