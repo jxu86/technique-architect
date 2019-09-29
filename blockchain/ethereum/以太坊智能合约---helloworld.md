@@ -1,10 +1,10 @@
 以下会说两种方法部署智能合约
 
-第一种使用web3 deploy方法，这种方法比较繁琐复杂，但是对应理解部署原理比较有用
+第一种使用以太坊客户端 deploy方法，这种方法比较繁琐复杂，但是对应理解部署原理比较有用
 
 第二种是使用trffle框架，这种方法基本是配置+命令，部署起来比较方便，开发效率会较第一种高。
 
-## 一、web3 deploy
+## 一、以太坊客户端(geth)
 `Environment:`
 
 `Solidity v0.5.1`
@@ -161,7 +161,7 @@ Contract mined! address: 0xbc7384998a5453a41bc51c1aa0f252034b57b986 transactionH
 ```
 > abi=[{"constant":false,"inputs":[],"name":"kill","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"internalType":"string","name":"_newgreeting","type":"string"}],"name":"setGreeting","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"greet","outputs":[{"internalType":"string","name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"inputs":[],"payable":false,"stateMutability":"nonpayable","type":"constructor"}]
 
-> MyContract = eth.contract(abi)   #这时候就提现了abi的重要性，相当于接口的描述文档
+> MyContract = eth.contract(abi)   #这时候就体现了abi的重要性，相当于接口的描述文档
 > contractAddress = "0xbc7384998a5453a41bc51c1aa0f252034b57b986" #这个地址就是合约地址
 > myContract = MyContract.at(contractAddress)
 > myContract.greet.call()
@@ -452,6 +452,8 @@ truffle(development)> helloworld.greet.call()
 参考:
 
 [以太坊智能合约Hello World示例程序](https://blog.csdn.net/CSDN_AF/article/details/77963841)
+
+[以太坊私有链下智能合约部署](https://www.cnblogs.com/beyang/p/8469311.html)
 
 [用Solidity在Truffle上构建一个HelloWorld智能合约](https://www.cnblogs.com/bugmaking/p/9211225.html)
 
