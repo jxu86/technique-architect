@@ -149,7 +149,57 @@
     * 标签(tag)
 
 * 方法   
-    * 
+    * 声明  
+        `func (t T) functionName([params type]) [return type]`  
+        `func (t *T) functionName([params type]) [return type]`
+        * T必须是一个定义类型；
+        * T必须和此方法声明定义在同一个代码包中；
+        * T不能是一个指针类型；
+        * T不能是一个接口类型。
+
+        ```
+        // Age和int是两个不同的类型。我们不能为int和*int
+        // 类型声明方法，但是可以为Age和*Age类型声明方法。
+        type Age int
+        func (age Age) LargerThan(a Age) bool {
+            return age > a
+        }
+        func (age *Age) Increase() {
+            *age++
+        }
+
+        // 为自定义的函数类型FilterFunc声明方法。
+        type FilterFunc func(in int) bool
+        func (ff FilterFunc) Filte(in int) bool {
+            return ff(in)
+        }
+
+        // 为自定义的映射类型StringSet声明方法。
+        type StringSet map[string]struct{}
+        func (ss StringSet) Has(key string) bool {
+            _, present := ss[key]
+            return present
+        }
+        func (ss StringSet) Add(key string) {
+            ss[key] = struct{}{}
+        }
+        func (ss StringSet) Remove(key string) {
+            delete(ss, key)
+        }
+
+        // 为自定义的结构体类型Book和它的指针类型*Book声明方法。
+        type Book struct {
+            pages int
+        }
+        func (b Book) Pages() int {
+            return b.pages
+        }
+        func (b *Book) SetPages(pages int) {
+            b.pages = pages
+        }
+
+        ```
+
 
 
     * 参考  
@@ -158,9 +208,147 @@
 
 
 * 接口
+    * 定义接口  
+        ```
+        type interface_name interface {
+            method_name1 [return_type]
+            method_name2 [return_type]
+            method_name3 [return_type]
+            ...
+            method_namen [return_type]
+        }
+        ```
 
+    * 例子
+        ```
+        package main
+        import (
+            "fmt"
+        )
+        type Phone interface {
+            call()
+        }
+        type NokiaPhone struct {
+        }
 
+        func (nokiaPhone NokiaPhone) call() {
+            fmt.Println("I am Nokia, I can call you!")
+        }
 
+        type IPhone struct {
+        }
+
+        func (iPhone IPhone) call() {
+            fmt.Println("I am iPhone, I can call you!")
+        }
+
+        func main() {
+            var phone Phone
+            phone = new(NokiaPhone)
+            phone.call()
+            phone = new(IPhone)
+            phone.call()
+        }
+        ```
+        `在上面的例子中，我们定义了一个接口Phone，接口里面有一个方法call()。然后我们在main函数里面定义了一个Phone类型变量，并分别为之赋值为NokiaPhone和IPhone。然后调用call()方法。`
+
+* 通道(channel)
+    * 概述  
+        通道（channel）是用来传递数据的一个数据结构。  
+        通道可用于两个 goroutine 之间通过传递一个指定类型的值来同步运行和通讯。操作符 <- 用于指定通道的方向，发送或接收。如果未指定方向，则为双向通道。   
+
+        ```
+        ch := make(chan int) // 定义，chan为关键字
+        ch <- value  // 写入发送
+        value := <-ch // 读取接收
+        close(ch) //关闭通道
+        ```
+
+    * 例子
+        ```
+        package main
+        import "fmt"
+
+        func sum(s []int, c chan int) {
+            sum := 0
+            for _, v := range s {
+                    sum += v
+            }
+            c <- sum // 把 sum 发送到通道 c
+        }
+
+        func main() {
+            s := []int{7, 2, 8, -9, 4, 0}
+
+            c := make(chan int)
+            go sum(s[:len(s)/2], c)
+            go sum(s[len(s)/2:], c)
+            x, y := <-c, <-c // 从通道 c 中接收
+
+            fmt.Println(x, y, x+y)
+        }
+        ```
+        结果:   
+        ```
+        -5 17 12
+        ```
+
+        `注意：默认情况下，通道是不带缓冲区的。发送端发送数据，同时必须又接收端相应的接收数据。`
+
+    * 通道缓冲区  
+        ```
+        ch := make(chan int, 100) // make 的第二个参数指定缓冲区大小
+        ```
+        `注意：如果通道不带缓冲，发送方会阻塞直到接收方从通道中接收了值。如果通道带缓冲，发送方则会阻塞直到发送的值被拷贝到缓冲区内；如果缓冲区已满，则意味着需要等待直到某个接收方获取到一个值。接收方在有值可以接收之前会一直阻塞。`
+
+    * 例子  
+        ```
+        package main
+        import "fmt"
+
+        func main() {
+            // 这里我们定义了一个可以存储整数类型的带缓冲通道
+            // 缓冲区大小为2
+            ch := make(chan int, 2)
+
+            // 因为 ch 是带缓冲的通道，我们可以同时发送两个数据
+            // 而不用立刻需要去同步读取数据
+            ch <- 1
+            ch <- 2
+
+            // 获取这两个数据
+            fmt.Println(<-ch)
+            fmt.Println(<-ch)
+        }
+        ```
+    * 遍历通道与关闭通道  
+    ```
+        package main
+        import (
+            "fmt"
+        )
+
+        func fibonacci(n int, c chan int) {
+            x, y := 0, 1
+            for i := 0; i < n; i++ {
+                    c <- x
+                    x, y = y, x+y
+            }
+            close(c)
+        }
+
+        func main() {
+            c := make(chan int, 10)
+            go fibonacci(cap(c), c)
+            // range 函数遍历每个从通道接收到的数据，因为 c 在发送完 10 个
+            // 数据之后就关闭了通道，所以这里我们 range 函数在接收到 10 个数据
+            // 之后就结束了。如果上面的 c 通道不关闭，那么 range 函数就不
+            // 会结束，从而在接收第 11 个数据的时候就阻塞了。
+            for i := range c {
+                    fmt.Println(i)
+            }
+        }
+    ```
 
 
 
