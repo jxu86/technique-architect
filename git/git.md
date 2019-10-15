@@ -12,3 +12,17 @@
 	fetch = +refs/heads/*:refs/remotes/origin/*
     ```
     * git push -f 强制提交到所有仓库，统一版本
+
+* tag  
+    * 创建tag
+    ```
+    git tag v1.0
+
+    ```
+    * 同步tag到远程服务器
+    ```
+    git push origin v1.0
+    ```
+    
+    参考:  
+    https://www.jianshu.com/p/cdd80dd15593
