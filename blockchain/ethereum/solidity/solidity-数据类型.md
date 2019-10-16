@@ -85,3 +85,5 @@
 [solidity中文文档](https://solidity-cn.readthedocs.io/zh/develop/)
 
 [cryptozombies](https://cryptozombies.io/zh/)
+
+[区块链技术-智能合约Solidity编程语言](https://www.tryblockchain.org/solidity-libraries-%E5%BA%93.html)

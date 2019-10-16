@@ -14,3 +14,7 @@
 [EOS源码分析（一）投票系统](https://blog.51cto.com/10582494/2152047)
 
 [EOS 源代码分享(三) 投票流程](https://blog.csdn.net/weixin_42285518/article/details/81299326)
+
+
+[一文看懂eos超级节点](https://blog.csdn.net/yhc166188/article/details/82592534)  
+[EOS解读--投票原理](https://www.jianshu.com/p/e4ccf31e9187)
