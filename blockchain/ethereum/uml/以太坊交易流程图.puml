@@ -1,0 +1,115 @@
+@startuml
+
+start
+:SendTransaction;
+partition 创建交易 {
+    note right
+    通过SendTxArgs.toTransaction()创建交易
+    end note
+    if (args.To == nil?) then (yes)
+    :创建合约交易
+    NewContractCreation;
+    else (no)
+    :创建普通交易
+    NewTransaction;
+    endif
+}
+
+
+partition 交易签名 {
+    note right
+    通过Wallet.SignTx()对交易进行签名
+    end note
+    if (账户是否解锁?) then (yes)
+    :获取账户私钥;
+    else (no)
+    stop
+    endif
+    :生成交易的hash值;
+    :根据hash值和私钥生成签名;
+    :把签名数据填充到Transaction实例中;
+}
+
+partition 提交交易 {
+    note right
+    通过submitTransaction()提交交易
+    end note
+    :获取交易的hash;
+    if (hash是否在txpool里?) then (yes)
+    stop
+    endif
+    :校验交易;
+    note right
+        数据量必须<32KB
+        交易金额必须非负（>=0）
+        交易的gas limit必须低于block的gas limit
+        签名数据必须有效，能够解析出发送者地址
+        交易的gas price必须高于pool设定的最低gas price（除非是本地交易）
+        交易的nonce值必须高于当前链上该账户的nonce值（低于则说明这笔交易已经被打包过了）
+        当前账户余额必须大于“交易金额 + gasprice * gaslimit”
+        交易的gas limit必须大于对应数据量所需的最低gas水平
+    end note
+    if (交易结果是否有错?) then (yes)
+    stop
+    endif
+    if (txpool是否已满?) then (yes)
+        if (当前交易是否低于最低价?) then (yes)
+            stop
+        else
+        :从txpool剔除一些低价的交易;
+        endif
+    endif
+
+    if (检查txpool是否有两个交易的nonce相同?) then (yes)
+    :删除gas price的交易;
+    endif
+
+    :把交易加入到queue列表中;
+
+    if (账户是否为本地账户?) then (yes)
+    :账户加到白名单
+    保证本地交易优先加到txpool;
+    endif
+}
+
+partition 广播交易(promoteExecutables) {
+    while (遍历accounts是否结束?)
+    note right
+        遍历账户的所有交易
+    end note
+    :丢弃nonce<账户当前nonce的交易;
+    :丢弃转账金额+gas>账户当前余额的交易;
+    :把交易从queued池加到pending池;
+    :广播交易
+    promoteTx;
+    :丢弃gas limit > block gas limit的交易;
+    endwhile
+
+    if (pending池长度>GlobalSlots?) then (yes)
+        while (pending池长度>GlobalSlots?)
+            :按交易最少的账户进行均衡;
+        endwhile
+    endif
+
+    if (pending池长度>GlobalSlots?) then (yes)
+        while (pending池长度>GlobalSlots?)
+            :按AccountSlots进行均衡;
+        endwhile
+    endif
+
+    if (queued池长度>GlobalQueue?) then (yes)
+        :账户地址按最后一次心态时间排序;
+        while(遍历账户&&需要删除的交易>0?)
+            if (改账户的交易数<需要删除的交易) then (yes)
+                :删除该账户的所有交易;
+            else (no)
+                :删除改账户交易数==需要删除的交易数;  
+            endif 
+        endwhile
+    endif
+}
+
+
+stop
+
+@enduml
