@@ -166,7 +166,7 @@ All contracts have been deployed
 ✓ Instance at 0xCfEB869F69431e42cdB54A4F4f105C19C080A601 upgraded
 ```
 升级完可以看到合约的地址是不变的
-然后我们调用increase方法，这时候后我们就要输入参数了，这里我输了100
+然后我们调用increase方法，这时候我们就要输入参数了，这里我输了100
 
 ```
 openzeppelin-demo openzeppelin send-tx  
