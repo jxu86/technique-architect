@@ -274,8 +274,10 @@ EVM在创建合约的时候需要执行合约，合约的执行就是从第一�
 ```
 solc --optimize --bin  HelloWorld.sol -o ./   # 生成HelloWorld.bin
 evmasm -d -i HelloWorld.bin -o ./helloworld.asm  # 反汇编生成汇编代码
+or
+evm disasm HelloWorld.bin 
 ```
-反汇编的工具我用的是[pyevmasm](https://github.com/crytic/pyevmasm)  
+反汇编的工具我用的是[pyevmasm](https://github.com/crytic/pyevmasm)或者用go-ethereum自带的工具evm。  
 helloworld.asm的内容如下:
 
 ```

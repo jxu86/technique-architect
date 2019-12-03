@@ -1,0 +1,62 @@
+@startuml
+
+EVMInterpreter *-- EVM
+EVMInterpreter *-- Config
+EVMInterpreter *-- intPool
+EVM *-- Context
+
+EVMInterpreter : evm *EVM
+EVMInterpreter : cfg Config
+EVMInterpreter : intPool *intPool
+EVMInterpreter : hasher    keccakState
+EVMInterpreter : hasherBuf common.Hash
+EVMInterpreter : readOnly   bool
+EVMInterpreter : returnData []byte
+
+EVMInterpreter : NewEVMInterpreter()
+EVMInterpreter : run()
+EVMInterpreter : canRun()
+
+Config : Debug  bool
+Config : Tracer Tracer
+Config : NoRecursion    bool
+Config : EnablePreimageRecording    bool
+Config : JumpTable  [256]operation
+Config : EWASMInterpreter   string
+Config : EVMInterpreter     string
+Config : ExtraEips []int
+
+EVM : Context
+EVM : StateDB StateDB
+EVM : depth int
+EVM : chainConfig *params.ChainConfig
+EVM : chainRules params.Rules
+EVM : vmConfig Config
+EVM : interpreters []Interpreter
+EVM : interpreter  Interpreter
+EVM : abort int32
+EVM : callGasTemp uint64
+
+EVM : create()
+EVM : create2()
+EVM : Cancelled()
+EVM : Call()
+EVM : CallCode()
+EVM : DelegateCall()
+
+EVM : ChainConfig()
+
+
+
+Context : CanTransfer CanTransferFunc
+Context : Transfer TransferFunc
+Context : GetHash GetHashFunc
+Context : Origin   common.Address
+Context : GasPrice *big.Int
+Context : Coinbase    common.Address
+Context : GasLimit    uint64
+Context : BlockNumber *big.Int
+Context : Time        *big.Int
+Context : Difficulty  *big.Int
+
+@enduml

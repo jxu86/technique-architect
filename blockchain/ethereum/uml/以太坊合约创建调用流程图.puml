@@ -1,0 +1,7 @@
+@startuml
+
+start
+:evm.create;
+:EVMInterpreter.run;
+
+@enduml
