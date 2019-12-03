@@ -210,9 +210,10 @@ func CreateAddress(b common.Address, nonce uint64) common.Address {
 
 
 
-### 合约的调用
+### 合约的调用  
 
 * 调用合约函数流程图  	
+
 ![以太坊调用合约流程图](https://github.com/jxu86/technique-architect/blob/master/file/以太坊调用合约流程图.png)
 
 
@@ -376,7 +377,8 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 
 ### EVM执行合约代码
 
-* EVM执行合约代码
+* EVM执行合约代码  
+
 ![以太坊调用合约流程图](https://github.com/jxu86/technique-architect/blob/master/file/以太坊EVM运行流程图.png)
 
 &emsp;&emsp;首先PC会从合约代码中读取一个OpCode，然后从一个JumpTable中检索出对应的operation，也就是与其相关联的函数集合。接下来会计算该操作需要消耗的油费，如果油费耗光则执行失败，返回ErrOutOfGas错误。如果油费充足，则调用execute()执行该指令，根据指令类型的不同，会分别对Stack、Memory或者StateDB进行读写操作。
