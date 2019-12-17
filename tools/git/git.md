@@ -14,6 +14,14 @@
     * git push -f 强制提交到所有仓库，统一版本
 
 * tag  
+    * 查看已有的tag
+    ```
+    git tag
+    ```
+    * 同步tag到本地
+    ```
+    git checkout -b branch_name tag_name
+    ```
     * 创建tag
     ```
     git tag v1.0
@@ -23,6 +31,14 @@
     ```
     git push origin v1.0
     ```
-    
+    * 删除本地分支
+    ```
+    git branch -d branch_name
+    ```
+    * 删除远程分支
+    ```
+    git push origin --delete branch_name
+    ```
+
     参考:  
     https://www.jianshu.com/p/cdd80dd15593
