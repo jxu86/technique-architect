@@ -1,6 +1,5 @@
 # 技术知识库
 ```
-├── README.md
 ├── blockchain
 │   ├── FISCOBCOS
 │   │   └── 文档.md
