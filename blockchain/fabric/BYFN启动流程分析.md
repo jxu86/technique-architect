@@ -96,4 +96,5 @@ CONSENSUS_TYPE=solo
 
 
 参考:   
-[Hyperledger Fabric笔记3--BYFN启动流程分析](https://blog.csdn.net/u011127242/article/details/80038177)
+[Hyperledger Fabric笔记3--BYFN启动流程分析](https://blog.csdn.net/u011127242/article/details/80038177)    
+[Hyperledger Fabric工具cryptogen介绍](https://www.jianshu.com/p/9d031a0606b7)

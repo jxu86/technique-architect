@@ -1,0 +1,45 @@
+@startuml
+start
+:sh byfn.sh up;
+partition (networkUp)byfn.sh {
+    :checkPrereqs;
+    if (crypto-config is exit?) then (no)
+    :generateCerts
+    根据crypto-config.yaml生成证书;
+    :replacePrivateKey;
+    :generateChannelArtifacts
+    根据configtx.yaml生成创世区块、
+    channel和锚点配置文件;
+    endif
+    :使用docker-compose
+    启动相应的容器;
+    if (容器启动是否成功?) then (no)
+    stop
+    else (yes)
+    :进入cli容器执行scripts/script.sh脚本;
+    endif
+}
+
+partition script.sh {
+    note right
+    import utils
+    调用到setGlobals、joinChannelWithRetry、updateAnchorPeers、
+    installChaincode、instantiateChaincode、chaincodeInvoke、chaincodeQuery等
+    end note
+    :createChannel
+    创建通道;
+    :joinChannel
+    peer加入通道;
+    partition 更新组织瞄点 {
+        :updateAnchorPeers 0 1;
+        :updateAnchorPeers 0 2;
+    }
+    partition 链码安装以及执行 {
+        :installChaincode;
+        :instantiateChaincode;
+        :chaincodeQuery;
+    }
+}
+
+stop
+@enduml
