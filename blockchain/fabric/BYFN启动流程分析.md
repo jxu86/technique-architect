@@ -3,6 +3,8 @@
 
 `fabric v1.4.4`
 
+### 启动流程
+![byfn启动流程图](../../file/fabric/byfn.png)   
 
 ### byfn.sh -m generate
 gengerate 作用为生成网络初始化配置，包括MSP证书、私钥、创世区块和配置交易等文件，MSP相关的信息在crypto-config文件夹中，创世区块在channel-artifacts文件夹中，MSP证书和私钥用于不同的网络实体，创世块用于启动排序服务，配置交易文件用于配置通道。
