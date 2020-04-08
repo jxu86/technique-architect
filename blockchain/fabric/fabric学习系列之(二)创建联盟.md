@@ -9,6 +9,13 @@
 fabric中的联盟和通道是一对一的关系，联盟必须和通道channel并存，而所有的配置都是记录在区块中的，包括有哪些联盟，有哪些org，所以要添加联盟就必须修改区块中的数据，更新配置。
 
 ### 二、创建联盟
+1、配置configtx.yaml    
+2、生成新的创世区块文件     
+3、把新的创世区块文件抽取新联盟的配置生成json格式文件       
+4、获取现在创世区块文件并用jd转化成json格式文件     
+5、经过增量计算和添加相应的头设置生成最新的.pb文件      
+6、把.pb文件update到orderer上更新创世区块
+
 
 * 修改配置文件configtx.yaml        
 向`configtx.yaml`的`Section: Profile`中创建Orderer创世区块的配置profile中添加新联盟（以TestConsortium联盟为例）
@@ -97,6 +104,7 @@ configtxlator compute_update --channel_id byfn-sys-channel --original ./channel-
 ```
 configtxlator proto_decode --input ./channel-artifacts/sys_config_update.pb --type common.ConfigUpdate | jq . > ./channel-artifacts/sys_config_update.json
 ```
+
 * 生成sys_config_update_in_envelope.json
 ```
 echo '{"payload":{"header":{"channel_header":{"channel_id":"byfn-sys-channel", "type":2}},"data":{"config_update":'$(cat ./channel-artifacts/sys_config_update.json)'}}}' | jq . > ./channel-artifacts/sys_config_update_in_envelope.json
@@ -133,7 +141,6 @@ TestChannel:
                 - *Org1
             Capabilities:
                 <<: *ApplicationCapabilities
-
 ```
 
 
@@ -166,3 +173,9 @@ export CORE_PEER_ADDRESS=peer1.org1.example.com:7051
 peer channel join -b testchannel.block
 peer channel list #查看
 ```
+
+
+参考:   
+[hyperledge工具-configtxlator](https://www.cnblogs.com/wanghui-garcia/p/10497415.html)      
+[Linux系统下使用jq工具处理json](https://www.jianshu.com/p/3522fe70de19)         
+[linux工具之jq](https://blog.csdn.net/weixin_44398879/article/details/85774977)
