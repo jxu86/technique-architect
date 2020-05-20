@@ -567,36 +567,36 @@ func GeneratePrivateKey(keystorePath string) (bccsp.Key,
 |                   `-- client.key
 `-- peerOrganizations
     |-- org1.example.com
-    |   |-- ca
+    |   |-- ca	# 存放组织Org1的根证书和对应的私钥文件，默认采用EC算法，证书为自签名。组织内的实体将基于该根证书作为证书根。
     |   |   |-- ca.org1.example.com-cert.pem
     |   |   `-- d2d37c565c8480f03f17c702bf1156e005b2591aa87f510cabc11a476965f417_sk
-    |   |-- msp
-    |   |   |-- admincerts
+    |   |-- msp 				# 存放代表该组织的身份信息
+    |   |   |-- admincerts		# 组织管理员的身份验证证书，被根证书签名。
     |   |   |   `-- Admin@org1.example.com-cert.pem
-    |   |   |-- cacerts
+    |   |   |-- cacerts			# 组织的根证书，同ca目录下文件。
     |   |   |   `-- ca.org1.example.com-cert.pem
     |   |   |-- config.yaml
-    |   |   `-- tlscacerts
+    |   |   `-- tlscacerts		# 用于TLS的CA证书，自签名。
     |   |       `-- tlsca.org1.example.com-cert.pem
-    |   |-- peers
-    |   |   |-- peer0.org1.example.com
-    |   |   |   |-- msp
-    |   |   |   |   |-- admincerts
+    |   |-- peers						# 存放属于该组织的所有Peer节点
+    |   |   |-- peer0.org1.example.com	# 第一个peer的信息，包括其msp证书和tls证书两类。
+    |   |   |   |-- msp					# msp相关证书   
+    |   |   |   |   |-- admincerts		# 组织管理员的身份验证证书。Peer将基于这些证书来认证交易签署者是否为管理员身份。
     |   |   |   |   |   `-- Admin@org1.example.com-cert.pem
-    |   |   |   |   |-- cacerts
+    |   |   |   |   |-- cacerts			# 存放组织的根证书
     |   |   |   |   |   `-- ca.org1.example.com-cert.pem
     |   |   |   |   |-- config.yaml
-    |   |   |   |   |-- keystore
+    |   |   |   |   |-- keystore		# 本节点的身份私钥，用来签名
     |   |   |   |   |   `-- cb7fed83abec4f4e4c38ab6e02d58bf17498da88ff9890db62022b3ab0e895d0_sk
-    |   |   |   |   |-- signcerts
+    |   |   |   |   |-- signcerts		# 验证本节点签名的证书，被组织根证书签名 
     |   |   |   |   |   `-- peer0.org1.example.com-cert.pem
-    |   |   |   |   `-- tlscacerts
+    |   |   |   |   `-- tlscacerts		# TLS连接用到身份证书，即组织TLS证书
     |   |   |   |       `-- tlsca.org1.example.com-cert.pem
-    |   |   |   `-- tls
-    |   |   |       |-- ca.crt
-    |   |   |       |-- server.crt
-    |   |   |       `-- server.key
-    |   |   `-- peer1.org1.example.com
+    |   |   |   `-- tls					# tls相关证书
+    |   |   |       |-- ca.crt			# 组织的根证书
+    |   |   |       |-- server.crt		# 验证本节点签名的证书，被组织根证书签名
+    |   |   |       `-- server.key		# 本节点的身份私钥，用来签名
+    |   |   `-- peer1.org1.example.com	# 第二个peer的信息，结构类似。（此处省略。）
     |   |       |-- msp
     |   |       |   |-- admincerts
     |   |       |   |   `-- Admin@org1.example.com-cert.pem
@@ -613,43 +613,43 @@ func GeneratePrivateKey(keystorePath string) (bccsp.Key,
     |   |           |-- ca.crt
     |   |           |-- server.crt
     |   |           `-- server.key
-    |   |-- tlsca
+    |   |-- tlsca						# 存放tls相关的证书和私钥。
     |   |   |-- 17b3da18b1f78c4baa09c52984d8146a47e2c5ecc43f1c1e8c0a72c2fd21245f_sk
     |   |   `-- tlsca.org1.example.com-cert.pem
-    |   `-- users
-    |       |-- Admin@org1.example.com
-    |       |   |-- msp
-    |       |   |   |-- admincerts
+    |   `-- users						# 存放属于该组织的用户的实体
+    |       |-- Admin@org1.example.com	# 管理员用户的信息，其中包括msp证书和tls证书两类。
+    |       |   |-- msp					# msp相关证书
+    |       |   |   |-- admincerts		# 组织根证书作为管理员身份验证证书 
     |       |   |   |   `-- Admin@org1.example.com-cert.pem
-    |       |   |   |-- cacerts
+    |       |   |   |-- cacerts			# 存放组织的根证书
     |       |   |   |   `-- ca.org1.example.com-cert.pem
-    |       |   |   |-- keystore
+    |       |   |   |-- keystore		# 本用户的身份私钥，用来签名
     |       |   |   |   `-- d93142f02dca95a481af2c80b347e734dbc5835f4dbd4e6c9739e8f3a4e62669_sk
-    |       |   |   |-- signcerts
+    |       |   |   |-- signcerts		# 管理员用户的身份验证证书，被组织根证书签名。要被某个Peer认可，则必须放到该Peer的msp/admincerts目录下
     |       |   |   |   `-- Admin@org1.example.com-cert.pem
-    |       |   |   `-- tlscacerts
+    |       |   |   `-- tlscacerts		# TLS连接用的身份证书，即组织TLS证书
     |       |   |       `-- tlsca.org1.example.com-cert.pem
-    |       |   `-- tls
-    |       |       |-- ca.crt
-    |       |       |-- client.crt
-    |       |       `-- client.key
-    |       `-- User1@org1.example.com
-    |           |-- msp
-    |           |   |-- admincerts
+    |       |   `-- tls					# 存放tls相关的证书和私钥。
+    |       |       |-- ca.crt			# 组织的根证书
+    |       |       |-- client.crt		# 管理员的用户身份验证证书，被组织根证书签名
+    |       |       `-- client.key		# 管理员用户的身份私钥，被组织根证书签名
+    |       `-- User1@org1.example.com	# 第一个用户的信息，包括msp证书和tls证书两类
+    |           |-- msp					# msp证书相关信息
+    |           |   |-- admincerts		# 组织根证书作为管理者身份验证证书。
     |           |   |   `-- User1@org1.example.com-cert.pem
-    |           |   |-- cacerts
+    |           |   |-- cacerts			# 存放组织的根证书
     |           |   |   `-- ca.org1.example.com-cert.pem
-    |           |   |-- keystore
+    |           |   |-- keystore		# 本用户的身份私钥，用来签名
     |           |   |   `-- eaaaa98f8f37d22373838a15eb85fb1816a28cb6dc611cd1852a97eb7808c79a_sk
-    |           |   |-- signcerts
+    |           |   |-- signcerts		# 验证本用户签名的身份证书，被组织根证书签名
     |           |   |   `-- User1@org1.example.com-cert.pem
-    |           |   `-- tlscacerts
+    |           |   `-- tlscacerts		# TLS连接用的身份证书，被组织根证书签名。
     |           |       `-- tlsca.org1.example.com-cert.pem
-    |           `-- tls
-    |               |-- ca.crt
-    |               |-- client.crt
-    |               `-- client.key
-    `-- org2.example.com
+    |           `-- tls					# 组织的根证书
+    |               |-- ca.crt			# 组织的根证书
+    |               |-- client.crt		# 验证用户签名的身份证书，被根组织证书签名
+    |               `-- client.key		# 用户的身份私钥用来签名。
+    `-- org2.example.com				# 跟org1.example.com类似
         |-- ca
         |   |-- ca.org2.example.com-cert.pem
         |   `-- dfeac21a81040e73ea7ffe97c9bad347b71bc6182b0ab538a76681400d0e480a_sk
