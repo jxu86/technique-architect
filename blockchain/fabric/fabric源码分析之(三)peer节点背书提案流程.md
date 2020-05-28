@@ -53,7 +53,7 @@ ProcessProposal()服务接口主要功能为接收和处理签名提案消息(Si
     * 返回背书响应
 
 
-源码如下:   
+提案背书主要入口函数为`ProcessProposal`,后续都是围绕此函数分析，源码如下:   
 ```golang
 // ProcessProposal process the Proposal
 func (e *Endorser) ProcessProposal(ctx context.Context, signedProp *pb.SignedProposal) (*pb.ProposalResponse, error) {
