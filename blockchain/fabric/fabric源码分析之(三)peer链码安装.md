@@ -148,7 +148,7 @@ func chaincodeInstall(cmd *cobra.Command, ccpackfile string, cf *ChaincodeCmdFac
 }
 ```
 ### 2.1 构造ChaincodeCmdFactory结构体
-我们进去看看`InitCmdFactory`做什么，位置在`peer/chaincode/common.go`
+我们进去看看`InitCmdFactory`做了什么，位置在`peer/chaincode/common.go`
 ```go
 // InitCmdFactory init the ChaincodeCmdFactory with default clients
 func InitCmdFactory(cmdName string, isEndorserRequired, isOrdererRequired bool) (*ChaincodeCmdFactory, error) {
@@ -540,7 +540,10 @@ type Proposal struct {
 	XXX_sizecache        int32    `json:"-"`
 }
 ```
-到这里`install`调用的`CreateInstallProposalFromCDS`完毕，返回`Proposal`结构体
+到这里`install`调用的`CreateInstallProposalFromCDS`完毕，返回`Proposal`结构体       
+关系有点复杂，给出一个类图能看得清晰点  
+![SignedProposal struct](../../file/fabric/struct_SignedProposal.png)
+
 
 #### 2.3.2 签名
 回到`install`，看`GetSignedProposal`对刚创建的提案结构进行签名      
