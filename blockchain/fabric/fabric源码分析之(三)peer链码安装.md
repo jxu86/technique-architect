@@ -19,7 +19,7 @@ ChainCode要在区块链网络中运行，需要经过链码安装和链码实�
 * lscc容器进行链码安装
 * 提案背书返回
 
-以下是在客户端执行`peer chaincode install ...`的业务流程图:
+以下是在客户端执行`"peer chaincode install ..."`的业务流程图:
 ![peer chaincode install](../../file/fabric/chaincode_install.png)
 
 
