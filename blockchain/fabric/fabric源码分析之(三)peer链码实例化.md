@@ -17,13 +17,13 @@
 * client提交签名交易给orderer节点进行广播
 
 以下是在客户端执行`"peer chaincode instantiate ..."`的业务流程图:
-![peer chaincode install](../../file/fabric/chaincode_instantiate.png)
+![peer chaincode instantiate](../../file/fabric/chaincode_instantiate.png)
 
 ## 2. 客户端构造提案信息并发送给背书节点
 客户端执行链码实例化命令:
 ```bash
-#-n 指定mycc是由用户定义的链码名字，-v 指定1.0是链码的版本，-p 是指定链码的路径
-peer chaincode install -p chaincodedev/chaincode/sacc -n mycc -v 1.0
+#-n 实例化链码的名称。 -c --ctor，链码的具体执行参数，为json格式。 -P --Policy 指定实例化策略。 -C 通道
+peer chaincode instantiate -n mycc -v 0 -c '{"Args":["a","10"]}' -C myc
 ```
 客户端的整个流程切入点为`fabric/peer/main.go`的`main`函数
 ```go
