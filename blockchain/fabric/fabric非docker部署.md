@@ -27,4 +27,5 @@ export CORE_PEER_CHAINCODELISTENADDRESS=192.168.31.67:7052
 
 参考:   
 [安装及运行Fabirc1.2--非docker模式](https://blog.csdn.net/sitebus/article/details/104095858)    
-[Native方式运行Fabric(非Docker方式)](https://blog.csdn.net/u013938484/article/details/79867992)
+[Native方式运行Fabric(非Docker方式)](https://blog.csdn.net/u013938484/article/details/79867992)     
+[Fabric 2.x 安装链码流程](https://blog.csdn.net/hello2mao/article/details/106083995)
