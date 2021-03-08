@@ -10,6 +10,10 @@
 
 ## 环境安装
 * 安装Docker及Docker-Compose
+* docker安装完需要安装`fabric-ccenv`镜像
+```
+docker pull hyperledger/fabric-ccenv:2.2.0
+```
 * 安装golang
 * 下载和编译安装fabric 2.2.0    
     上github下周fabric 2.2.0后，进入目录执行`make release`,安装好的fabric工具请设置好环境变量
