@@ -96,7 +96,7 @@ func generatePeerOrg(baseDir string, orgSpec OrgSpec) {
 	adminCertsDir := filepath.Join(mspDir, "admincerts")
     // generate signing CA
     // 生成Ca证书，ca目录下pem和_sk文件
-	signCA, err := ca.NewCA(caDir, orgName, orgSpec.CA.CommonName, orgSpec.CA.Country, orgSpec.CA.Province, orgSpec.CA.Locality, orgSpec.CA.OrganizationalUnit, orgSpec.CA.StreetAddress, orgSpec.CA.PostalCode)
+	signCA, err := ca.NewCA(caDir, orgName, orgSpec.CA.CommonName, orgSpec.CA.Country, orgSpec.CA.Province, orgSpec.CA.Locality, orgSpec.CA.OrganizationalUnit,· orgSpec.CA.StreetAddress, orgSpec.CA.PostalCode)
 	if err != nil {
 		fmt.Printf("Error generating signCA for org %s:\n%v\n", orgName, err)
 		os.Exit(1)
