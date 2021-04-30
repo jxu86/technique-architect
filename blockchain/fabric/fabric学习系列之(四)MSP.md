@@ -92,4 +92,4 @@ org1.example.com/
 [Hyperledger Fabric手动生成CA证书搭建Fabric网络](https://www.cnblogs.com/cbkj-xd/p/12006275.html)   
 [Fabric CA拓扑结构](https://www.jianshu.com/p/e766e0789319)     
 [Hyperledger Fabric(集成Fabric-ca)](https://www.jianshu.com/p/3dc4153f95bd)     
-[fabric源码解析26——验证体系](https://blog.csdn.net/idsuf698987/article/details/81677133)
+[fabric源码解析26——验证体系](https://blog.csdn.net/idsuf698987/article/details/81677133)  
