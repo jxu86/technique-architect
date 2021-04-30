@@ -10,6 +10,10 @@
 
 ## 环境安装
 * 安装Docker及Docker-Compose
+* docker安装完需要安装`fabric-ccenv`镜像
+```
+docker pull hyperledger/fabric-ccenv:2.2.0
+```
 * 安装golang
 * 下载和编译安装fabric 2.2.0    
     上github下周fabric 2.2.0后，进入目录执行`make release`,安装好的fabric工具请设置好环境变量
@@ -345,4 +349,5 @@ peer channel update -o localhost:7050 -c mychannel -f  $(pwd)/channel-artifacts/
 参考:   
 [安装及运行Fabirc1.2--非docker模式](https://blog.csdn.net/sitebus/article/details/104095858)    
 [Native方式运行Fabric(非Docker方式)](https://blog.csdn.net/u013938484/article/details/79867992)     
-[Fabric 2.x 安装链码流程](https://blog.csdn.net/hello2mao/article/details/106083995)
+[Fabric 2.x 安装链码流程](https://blog.csdn.net/hello2mao/article/details/106083995)    
+[非Docker环境部署Fabric](http://xuyao.club/blog/2020/08/26/deploy-fabric-to-a-non-docker-environment/)
