@@ -231,5 +231,7 @@ func (ch *chain) main() {
 
 
 参考:   
-[Hyperledger Fabric原理详解与实战6](https://juejin.cn/post/6844904119379951624)     
-[Fabric 1.4源码解读 7：Orderer架构解读](https://blog.csdn.net/m0_43499523/article/details/104882066)
+[Hyperledger Fabric原理详解与实战6](https://juejin.cn/post/6844904119379951624)   	   
+[Fabric 1.4源码解读 7：Orderer架构解读](https://blog.csdn.net/m0_43499523/article/details/104882066)       
+[Hyperledger-Fabric源码分析（创建通道）](https://www.jianshu.com/p/cc0e595f4621?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation)    
+
