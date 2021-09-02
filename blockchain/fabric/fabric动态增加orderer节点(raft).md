@@ -6,13 +6,29 @@
 
 
 
-## 概述
-
-
+## 一、概述
 ![增加orderer节点](../../file/fabric/orderer_addnode.jpeg)   
+如上图，我们将orderer节点从5个扩展到6个
+步骤:
+* 启动网络(raft共识)
+* 准备orderer6证书
+* 增加orderer6 tls证书到系统通道
+* 获取最新区块作为orderer6的创世区块
+* 启动orderer6节点容器
+* 增加orderer6节点信息到系统通道
+* 增加orderer6 tls证书到用户通道(可选)
+* 增加orderer6节点信息到用户通道(可选)
+  
+区块变化如下图:
+![involve_new_config_block](../../file/fabric/involve_new_config_block.png)  
 
 
-## 搭建网络
+脚本执行过程如下图:
+![involve_new_config_block](../../file/fabric/create_config_update.png)   
+
+
+
+## 二、搭建网络
 ### 1、下载镜像以及相关工具包
 `https://github.com/hyperledger/fabric/blob/v2.2.0/scripts/bootstrap.sh`内容copy到刚创建的bootstrap.sh文件里面去    
 执行以下命令:
@@ -96,7 +112,7 @@ a86d6691a134   5fb8e97da88d   "orderer"           5 seconds ago   Up 2 seconds  
 sh network.sh createChannel
 ```
 
-## 在现有运行的网络增加orderer节点
+## 三、在现有运行的网络增加orderer节点
 
 ### 1、生成orderer6证书
 修改`./fabric-samples/test-network/organizations/cryptogen/crypto-config-orderer.yaml`增加orderer6
@@ -259,7 +275,7 @@ sh addOrdererNode/add_ep_sysCh.sh
 
 代码请参考:`https://github.com/jxu86/fabric-sample-test`
 
-
+[文章github地址](https://github.com/jxu86/technique-architect/blob/master/blockchain/fabric/fabric动态增加orderer节点(raft).md)
 
 参考:   
 [配置并使用 Raft 排序服务](https://hyperledger-fabric.readthedocs.io/zh_CN/latest/raft_configuration.html#)     
