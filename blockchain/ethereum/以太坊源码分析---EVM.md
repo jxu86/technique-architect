@@ -214,7 +214,7 @@ func CreateAddress(b common.Address, nonce uint64) common.Address {
 
 * 调用合约函数流程图  	
 
-![以太坊调用合约流程图](https://github.com/jxu86/technique-architect/blob/master/file/以太坊调用合约流程图.png)
+![以太坊调用合约流程图](../../file/以太坊调用合约流程图.png)
 
 
 ```
@@ -379,7 +379,8 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 
 * EVM执行合约代码  
 
-![以太坊调用合约流程图](https://github.com/jxu86/technique-architect/blob/master/file/以太坊EVM运行流程图.png)
+![以太坊调用合约流程图](../../file/evm_opcode_run.png)
+![以太坊调用合约流程图](../../file/以太坊EVM运行流程图.png)
 
 &emsp;&emsp;首先PC会从合约代码中读取一个OpCode，然后从一个JumpTable中检索出对应的operation，也就是与其相关联的函数集合。接下来会计算该操作需要消耗的油费，如果油费耗光则执行失败，返回ErrOutOfGas错误。如果油费充足，则调用execute()执行该指令，根据指令类型的不同，会分别对Stack、Memory或者StateDB进行读写操作。
 
@@ -791,12 +792,11 @@ const (
 
 
 参考:   
-[以太坊源码深入分析（9）-- 以太坊通过EVM执行交易过程分析](https://www.jianshu.com/p/bf4e2cd86e81)   
-[以太坊源码研读0xa0 EVM机制](https://www.jianshu.com/p/c9b307316750)
+[以太坊源码深入分析（9）-- 以太坊通过EVM执行交易过程分析](https://www.jianshu.com/p/bf4e2cd86e81)    
+[以太坊源码研读0xa0 EVM机制](https://www.jianshu.com/p/c9b307316750)   
+[深入了解以太坊虚拟机第5部分——一个新合约被创建后会发生什么](https://www.jianshu.com/p/d9137e87c9d3)   
+[深入探索EVM : 编译和部署智能合约](https://www.arcblock.io/zh/post/2018/12/08/evm-part-1)   
+[以太坊虚拟机原理及源代码深入挖掘(推荐)](https://blog.csdn.net/qq_21518355/article/details/89407178)     
+[以太坊源码解析：evm](http://yangzhe.me/2019/08/12/ethereum-evm/)     
 
-[深入了解以太坊虚拟机第5部分——一个新合约被创建后会发生什么](https://www.jianshu.com/p/d9137e87c9d3)
-
-[深入探索EVM : 编译和部署智能合约](https://www.arcblock.io/zh/post/2018/12/08/evm-part-1)
-
-[以太坊虚拟机原理及源代码深入挖掘(推荐)](https://blog.csdn.net/qq_21518355/article/details/89407178)
 
