@@ -12,4 +12,5 @@
 [Fabric 1.4源码解读 9：从账本角度看Peer](https://lessisbetter.site/2020/01/03/fabric-peer-ledger/)      
 [Hyperledger Fabric - 隐私数据与私有数据](https://zhuanlan.zhihu.com/p/113647293)   
 [Hyperledger Fabric账本设计及源码剖析](https://zhuanlan.zhihu.com/p/31170225)   
-[Hyperledger Fabric从源码分析账本](https://blog.csdn.net/lvyibin890/article/details/106540110)
+[Hyperledger Fabric从源码分析账本](https://blog.csdn.net/lvyibin890/article/details/106540110)    
+[HyperLeger Fabric开发（五）——HyperLeger Fabric账本存储](https://blog.51cto.com/u_9291927/2316594)
