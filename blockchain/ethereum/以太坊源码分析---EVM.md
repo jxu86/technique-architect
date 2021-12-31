@@ -788,6 +788,12 @@ const (
 
 * EVM的虚拟机解析器通过合约指令，执行合约代码
 
+* EVM.DelegateCall 这个调用方式将「库合约」的调用者，设置成自己的调用者；将「库合约」的地址，设置成自己的地址（但代码还是「库合约」的代码）。如此一来，「库合约」的属性，就完全和自己的属性一样了，「库合约」的代码就像是自己的写的代码一样。  
+例如 A 账户调用了 B 合约，而在 B 合约中通过 DelegateCall 调用了 C 合约，那么 C 合约的调用者将被修改成 A ， C 合约的地址将被修改成 B 合约的地址。所以在刚才用来转账的「库合约」的例子中，「自己账户」指的不再是「库合约」的账户了，而是调用「库合约」的账户，转账也就可以按我们想要的方式进行了。
+* EVM.CallCode 与EVM.DelegateCall类似，不同的是 EVM.CallCode 不改变「库合约」的调用者，只是改变「库合约」的合约地址。也就是说，如果 A 通过 CallCode 的方式调用 B，那么 B 的调用者是 A，而 B 的账户地址也被改成了 A。
+* EVM.StaticCall 与 EVM.Call 类似，唯一不同的是 EVM.StaticCall 不允许执行会修改永久存储的数据的指令。
+
+![](../../file/call-difference.png)
 
 
 
@@ -798,5 +804,6 @@ const (
 [深入探索EVM : 编译和部署智能合约](https://www.arcblock.io/zh/post/2018/12/08/evm-part-1)   
 [以太坊虚拟机原理及源代码深入挖掘(推荐)](https://blog.csdn.net/qq_21518355/article/details/89407178)     
 [以太坊源码解析：evm](http://yangzhe.me/2019/08/12/ethereum-evm/)     
+[以太坊合约调用call、callcode和delegatecall的联系与区别](https://blog.csdn.net/sanqima/article/details/114305130)
 
 
