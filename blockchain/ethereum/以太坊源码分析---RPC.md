@@ -3,7 +3,17 @@
 
 
 
-
+```
+-> geth
+    -> startNode
+        -> Start
+            -> openEndpoints
+                -> startRPC
+                    -> n.http.start
+                        -> net.Listen("tcp", h.endpoint)
+                        -> go h.server.Serve(listener)
+                            -> httpServer.ServeHTTP
+```
 
 
 
