@@ -386,7 +386,7 @@ func (evm *EVM) Call(caller ContractRef, addr common.Address, input []byte, gas 
 
 * 代码分析
 ```
-// core/vm/interpreter.go
+// core/vm/interpreter.go·
 
 // Run loops and evaluates the contract's code with the given input data and returns
 // the return byte-slice and an error if one occurred.
