@@ -25,4 +25,6 @@
 
 参考:   
 [以太坊开发之ERC20协议原理及实现](https://www.dazhuanlan.com/xiaodonging/topics/1229584)    
-[以太坊ERC20代币合约案例 ](https://www.cnblogs.com/jameszou/p/10131443.html)
+[以太坊ERC20代币合约案例 ](https://www.cnblogs.com/jameszou/p/10131443.html)    
+[通过SOLIDITY智能合约转移和批准ERC-20通证](https://ethereum.org/zh/developers/tutorials/transfers-and-approval-of-erc-20-tokens-from-a-solidity-smart-contract/)   
+[了解ERC-20通证智能合约](https://ethereum.org/zh/developers/tutorials/understand-the-erc-20-token-smart-contract/)
