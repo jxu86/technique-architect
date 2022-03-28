@@ -4,7 +4,7 @@
 
 
 ### 状态变量
-* name 返回 token 的名字 
+* name 返回 token 的名字
 * symbol 返回令牌的符号，比如 LXT 
 * decimals 返回 token 使用的小数点后几位
 ### 接口函数
