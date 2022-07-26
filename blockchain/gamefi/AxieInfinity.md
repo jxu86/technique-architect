@@ -31,3 +31,6 @@ MyCryptoHeroes 是一款基于以太坊的架空世界 RPG 游戏，玩家可以
 
 BSC参考:  
 [BSC（币安智能链）私有链部署](https://www.136.la/jingpin/show-125117.html)   
+
+
+[geth使用clique(PoA)共识启动以太坊私有链](https://blog.csdn.net/zhj_fly/article/details/79933799)
