@@ -3,7 +3,8 @@
 
 
 
-
+* 在Vue组件中，我们使用@wheel事件来检测滚轮事件
+* 
 
 
 参考:  
@@ -21,3 +22,6 @@
 
 
 [CSS实现盒子模型水平居中、垂直居中、水平垂直居中的多种方法](https://blog.csdn.net/Li_dengke/article/details/81193451)
+
+
+[vite配置https](https://juejin.cn/post/7134582855006421000)

@@ -20,4 +20,6 @@ sqlite> .output data.csv
 sqlite> SELECT * FROM table_name;
 sqlite> .output stdout // 输出重定向
 
+
+sqlite3 whitelist.sqlite .dump > backup.sql
 ```

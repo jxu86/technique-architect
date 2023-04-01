@@ -19,28 +19,28 @@ todo
        color: green;
    }
    ```
-1. id选择器作用：根据元素的id属性值选中一个元素语法：#id属性值{}例子：#box{} #red{}
+2. id选择器作用：根据元素的id属性值选中一个元素语法：#id属性值{}例子：#box{} #red{}
 
    ```css
    #red{
        color: red;
    }
    ```
-1. 类选择器作用：根据元素的class属性值选中一组元素语法：.class属性值
+3. 类选择器作用：根据元素的class属性值选中一组元素语法：.class属性值
 
    ```css
    .blue{
        color: blue;
    }
    ```
-1. 通配选择器作用：选中页面中的所有元素语法: *
+4. 通配选择器作用：选中页面中的所有元素语法: *
 
    ```css
    *{
        color: red;
    }
    ```
-1. 交集选择器作用：选中同时复合多个条件的元素语法：选择器1选择器2选择器3选择器n{}注意点：交集选择器中如果有元素选择器，必须使用元素选择器开头
+5. 交集选择器作用：选中同时复合多个条件的元素语法：选择器1选择器2选择器3选择器n{}注意点：交集选择器中如果有元素选择器，必须使用元素选择器开头
 
    ```css
    div.red{
@@ -51,28 +51,28 @@ todo
        color: blue
    }
    ```
-1. 选择器分组（并集选择器）作用：同时选择多个选择器对应的元素语法：选择器1,选择器2,选择器3,选择器n{}#b1,.p1,h1,span,div.red{}
+6. 选择器分组（并集选择器）作用：同时选择多个选择器对应的元素语法：选择器1,选择器2,选择器3,选择器n{}#b1,.p1,h1,span,div.red{}
 
    ```css
    h1, .red{
        color: green
    }
    ```
-1. 子元素选择器作用：选中指定父元素的指定子元素语法：父元素 > 子元素
+7. 子元素选择器作用：选中指定父元素的指定子元素语法：父元素 > 子元素
 
    ```css
    div.box > span{
        color: orange;
    }
    ```
-1. 后代元素选择器：作用：选中指定元素内的指定后代元素语法：祖先 后代
+8. 后代元素选择器：作用：选中指定元素内的指定后代元素语法：祖先 后代
 
    ```css
    div span{
        color: skyblue
    } 
    ```
-1. 属性选择器[属性名] 选择含有指定属性的元素[属性名=属性值] 选择含有指定属性和属性值的元素[属性名^=属性值] 选择属性值以指定值开头的元素[属性名$=属性值] 选择属性值以指定值结尾的元素[属性名*=属性值] 选择属性值中含有某值的元素的元素
+9. 属性选择器[属性名] 选择含有指定属性的元素[属性名=属性值] 选择含有指定属性和属性值的元素[属性名^=属性值] 选择属性值以指定值开头的元素[属性名$=属性值] 选择属性值以指定值结尾的元素[属性名*=属性值] 选择属性值中含有某值的元素的元素
 
    ```css
    /* p[title]{ */
@@ -83,157 +83,157 @@ todo
        color: orange;
    }
    ```
-1. 伪类选择器
+10. 伪类选择器
 
-   ```css
-   /* 
-       将ul里的第一个li设置为红色
-   */
+    ```css
+    /* 
+        将ul里的第一个li设置为红色
+    */
 
-   /*
-       伪类（不存在的类，特殊的类）
-           - 伪类用来描述一个元素的特殊状态
-               比如：第一个子元素、被点击的元素、鼠标移入的元素...
-           - 伪类一般情况下都是使用:开头
-               :first-child 第一个子元素
-               :last-child 最后一个子元素
-               :nth-child() 选中第n个子元素
-               :only-child
-                   特殊值：
-                       n 第n个 n的范围0到正无穷
-                       2n 或 even 表示选中偶数位的元素
-                       2n+1 或 odd 表示选中奇数位的元素
+    /*
+        伪类（不存在的类，特殊的类）
+            - 伪类用来描述一个元素的特殊状态
+                比如：第一个子元素、被点击的元素、鼠标移入的元素...
+            - 伪类一般情况下都是使用:开头
+                :first-child 第一个子元素
+                :last-child 最后一个子元素
+                :nth-child() 选中第n个子元素
+                :only-child
+                    特殊值：
+                        n 第n个 n的范围0到正无穷
+                        2n 或 even 表示选中偶数位的元素
+                        2n+1 或 odd 表示选中奇数位的元素
 
-                   - 以上这些伪类都是根据所有的子元素进行排序
+                    - 以上这些伪类都是根据所有的子元素进行排序
 
-               :first-of-type
-               :last-of-type
-               :nth-of-type()
-               :only-of-type
-               :empty
-                   - 这几个伪类的功能和上述的类似，不通点是他们是在同类型元素中进行排序
+                :first-of-type
+                :last-of-type
+                :nth-of-type()
+                :only-of-type
+                :empty
+                    - 这几个伪类的功能和上述的类似，不通点是他们是在同类型元素中进行排序
 
-           - :not() 否定伪类
-               - 将符合条件的元素从选择器中去除
-   */
-   /* ul > li:first-child{
-       color: red;
-   } */
+            - :not() 否定伪类
+                - 将符合条件的元素从选择器中去除
+    */
+    /* ul > li:first-child{
+        color: red;
+    } */
 
-   /* ul > li:last-child{
-       color: red;
-   } */
+    /* ul > li:last-child{
+        color: red;
+    } */
 
-   /* ul > li:nth-child(2n+1){
-       color: red;
-   } */
+    /* ul > li:nth-child(2n+1){
+        color: red;
+    } */
 
-   /* ul > li:nth-child(even){
-       color: red;
-   } */
+    /* ul > li:nth-child(even){
+        color: red;
+    } */
 
-   /* ul > li:first-of-type{
-       color: red;
-   } */
+    /* ul > li:first-of-type{
+        color: red;
+    } */
 
-   ul > li:not(:nth-of-type(3)){
-       color: yellowgreen;
-   }
-   ```
-1. a元素的伪类
+    ul > li:not(:nth-of-type(3)){
+        color: yellowgreen;
+    }
+    ```
+11. a元素的伪类
 
-   ```css
-   /*
-       :link 用来表示没访问过的链接（正常的链接）
-   */
-   a:link{
-       color: red;
-   }
+    ```css
+    /*
+        :link 用来表示没访问过的链接（正常的链接）
+    */
+    a:link{
+        color: red;
+    }
 
-   /* 
-       :visited 用来表示访问过的链接
-       由于隐私的原因，所以visited这个伪类只能修改链接的颜色
-   */
-   a:visited{
-       color: orange; 
-       /* font-size: 50px;   */
-   }
+    /* 
+        :visited 用来表示访问过的链接
+        由于隐私的原因，所以visited这个伪类只能修改链接的颜色
+    */
+    a:visited{
+        color: orange; 
+        /* font-size: 50px;   */
+    }
 
-   /* 
-       :hover 用来表示鼠标移入的状态
-   */
-   a:hover{
-       color: aqua;
-       font-size: 50px;
-   }
+    /* 
+        :hover 用来表示鼠标移入的状态
+    */
+    a:hover{
+        color: aqua;
+        font-size: 50px;
+    }
 
-   /*
-       :active 用来表示鼠标点击
-   */
-   a:active{
-       color: yellowgreen;
-   }
-   p:first-child{
-       color: red;
-   }
-   ```
-1. 伪元素选择器伪元素，表示页面中一些特殊的并不真实的存在的元素（特殊的位置）伪元素使用 :: 开头::first-letter 表示第一个字母::first-line 表示第一行::selection 表示选中的内容::before 元素的开始::after 元素的最后- before 和 after 必须结合content属性来使用
+    /*
+        :active 用来表示鼠标点击
+    */
+    a:active{
+        color: yellowgreen;
+    }
+    p:first-child{
+        color: red;
+    }
+    ```
+12. 伪元素选择器伪元素，表示页面中一些特殊的并不真实的存在的元素（特殊的位置）伪元素使用 :: 开头::first-letter 表示第一个字母::first-line 表示第一行::selection 表示选中的内容::before 元素的开始::after 元素的最后- before 和 after 必须结合content属性来使用
 
-   ```css
-   p::first-letter{
-       font-size: 50px;
-   }
+    ```css
+    p::first-letter{
+        font-size: 50px;
+    }
 
-   p::first-line{
-       background-color: yellow; 
-   }
+    p::first-line{
+        background-color: yellow; 
+    }
 
-   p::selection{
-       background-color: greenyellow;
-   }
+    p::selection{
+        background-color: greenyellow;
+    }
 
-   /* div::before{
-       content: 'abc';
-       color: red;
-   }
+    /* div::before{
+        content: 'abc';
+        color: red;
+    }
 
-   div::after{
-       content: 'haha';
-       color: blue;
-   } */
+    div::after{
+        content: 'haha';
+        color: blue;
+    } */
 
-   div::before{
-       content: '『';
-       }
+    div::before{
+        content: '『';
+        }
 
-   div::after{
-       content: '』';
-   }
-   ```
-1. 选择器的权重
+    div::after{
+        content: '』';
+    }
+    ```
+13. 选择器的权重
 
-   ```css
-   /* 
-   样式的冲突
-       - 当我们通过不同的选择器，选中相同的元素，并且为相同的样式设置不同的值时，此时就发生了样式的冲突。
+    ```css
+    /* 
+    样式的冲突
+        - 当我们通过不同的选择器，选中相同的元素，并且为相同的样式设置不同的值时，此时就发生了样式的冲突。
 
-   发生样式冲突时，应用哪个样式由选择器的权重（优先级）决定
-   选择器的权重
-       内联样式        1,0,0,0
-       id选择器        0,1,0,0
-       类和伪类选择器   0,0,1,0
-       元素选择器       0,0,0,1
-       通配选择器       0,0,0,0
-       继承的样式       没有优先级
+    发生样式冲突时，应用哪个样式由选择器的权重（优先级）决定
+    选择器的权重
+        内联样式        1,0,0,0
+        id选择器        0,1,0,0
+        类和伪类选择器   0,0,1,0
+        元素选择器       0,0,0,1
+        通配选择器       0,0,0,0
+        继承的样式       没有优先级
 
-   比较优先级时，需要将所有的选择器的优先级进行相加计算，最后优先级越高，则越优先显示（分组选择器是单独计算的）,
-       选择器的累加不会超过其最大的数量级，类选择器在高也不会超过id选择器
-       如果优先级计算后相同，此时则优先使用靠下的样式
+    比较优先级时，需要将所有的选择器的优先级进行相加计算，最后优先级越高，则越优先显示（分组选择器是单独计算的）,
+        选择器的累加不会超过其最大的数量级，类选择器在高也不会超过id选择器
+        如果优先级计算后相同，此时则优先使用靠下的样式
 
-   可以在某一个样式的后边添加 !important ，则此时该样式会获取到最高的优先级，甚至超过内联样式，
-       注意：在开发中这个玩意一定要慎用！
-   */
-   ```
+    可以在某一个样式的后边添加 !important ，则此时该样式会获取到最高的优先级，甚至超过内联样式，
+        注意：在开发中这个玩意一定要慎用！
+    */
+    ```
 
 ### 二、样式的继承
 
@@ -316,7 +316,7 @@ todo
 
 #### 2、盒子模型
 
-![box model](../file/html_css/../../../file/html_css/box-model.jpeg)盒模型、盒子模型、框模型（box model）
+![box model](../file/html_css/box-model.jpeg)盒模型、盒子模型、框模型（box model）
 
 - CSS将页面中的所有元素都设置为了一个矩形的盒子
 - 将元素设置为矩形的盒子后，对页面的布局就变成将不同的盒子摆放到不同的位置
@@ -880,9 +880,10 @@ a{
 
 ```
 
-
 ### 六、浮动
+
 #### 1、简介
+
 ```css
 .box1{
     width: 400px;
@@ -930,7 +931,9 @@ a{
     float: right;
 }
 ```
+
 #### 2、浮动其他特点
+
 ```css
 *{
     margin: 0;
@@ -977,7 +980,9 @@ a{
     background-color: yellow;
 }
 ```
+
 #### 3、网页布局
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -1054,12 +1059,32 @@ a{
        <aside></aside>
 
     </main>
-    
+  
     <!-- 网页的底部 -->
     <footer></footer>
 </body>
 </html>
 ```
+
+### 七、布局定位
+#### 1、position属性的作用
+position可选值：   
+* static 默认值，元素是静止的没有开启定位，浏览器决定元素位置(默认位置)
+* relative 开启元素的相对定位(`相对static时的位置`)，搭配top、bottom、left、right这四个属性一起使用，用来指定偏移的方向和距离
+* absolute 开启元素的绝对定位，`相对于上级元素（一般是父元素）进行偏移，即定位基点是父元素`。如果定位基点(父元素)是static定位，定位基点就会变成整个网页的根元素。
+* fixed 开启元素的固定定位，`相对于视口（viewport，浏览器窗口）进行偏移，即定位基点是浏览器窗口`。这会导致元素的位置不随页面滚动而变化，好像固定在网页上一样。
+* sticky 开启元素的粘滞定位, 很像relative和fixed的结合：一些时候是relative定位（定位基点是自身默认位置），另一些时候自动变成fixed定位（定位基点是视口）。   
+    sticky生效的前提是，必须搭配top、bottom、left、right这四个属性一起使用，不能省略，否则等同于relative定位，不产生"动态固定"的效果。
+  
+注意:       
+`relative、absolute、fixed这三个属性值有一个共同点，都是相对于某个基点的定位，不同之处仅仅在于基点不同。`
+
+
+参考:  
+[CSS 定位详解](https://www.ruanyifeng.com/blog/2019/11/css-position.html)
+
+
+
 
 
 ### 参考
