@@ -56,7 +56,17 @@
 
 
 
-
+### **全局变量**
+* blockhash(uint blockNumber): (bytes32)给定区块的哈希值 – 只适用于256最近区块, 不包含当前区块。
+* block.coinbase: (address payable) 当前区块矿工的地址
+* block.gaslimit: (uint) 当前区块的gaslimit
+* block.number: (uint) 当前区块的number
+* block.timestamp: (uint) 当前区块的时间戳，为unix纪元以来的秒
+* gasleft(): (uint256) 剩余 gas
+* msg.data: (bytes calldata) 完整call data
+* msg.sender: (address payable) 消息发送者 (当前 caller)
+* msg.sig: (bytes4) calldata的前四个字节 (function identifier)
+* msg.value: (uint) 当前交易发送的wei值
 
 
 
